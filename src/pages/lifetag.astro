@@ -1,0 +1,70 @@
+---
+const title = "LifeTag — Your belongings, one digital home";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d9488" />
+  <title>{title}</title>
+  <meta name="description" content="LifeTag helps you track belongings, purchase dates, warranties, and repair notes." />
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17202a;background:#f3f7f7;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}
+    header{background:linear-gradient(140deg,#115e59,#0d9488,#2dd4bf);color:#fff;padding:24px 18px 25px;border-radius:0 0 26px 26px}
+    .wrap{max-width:850px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:#ffffff25;font-size:25px}.brand h1{font-size:25px;letter-spacing:-.8px;margin:0;font-weight:850}.tagline{font-size:13px;opacity:.9;margin-top:2px}
+    main{max-width:850px;margin:auto;padding:17px 14px 100px}.headrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 14px}.headrow h2{margin:0;font-size:20px}.primary{background:#0d9488;color:white;border:0;border-radius:12px;padding:11px 14px;font-weight:750}.secondary{background:white;color:#0f766e;border:1px solid #b9dcd8;border-radius:11px;padding:9px 12px;font-weight:700}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:15px 0}.stat{background:#fff;border:1px solid #e1e9e9;border-radius:16px;padding:15px}.num{font-size:29px;font-weight:850;line-height:1.1}.label{font-size:12px;color:#68737d;margin-top:5px}.toolbar{display:flex;gap:8px;margin:12px 0}.toolbar input{flex:1;min-width:0}.field,input,select,textarea{width:100%;padding:11px 12px;border:1px solid #d6e1e1;border-radius:11px;background:white;outline-color:#5eead4}
+    .filters{display:flex;gap:7px;overflow:auto;padding:2px 0 12px}.filter{white-space:nowrap;border:1px solid #e1e9e9;background:#fff;color:#475569;border-radius:99px;padding:7px 12px}.filter.active{background:#ccfbf1;border-color:#5eead4;color:#115e59;font-weight:750}.items{display:grid;grid-template-columns:1fr;gap:10px}.item{background:#fff;border:1px solid #e1e9e9;border-radius:16px;padding:14px;display:flex;gap:12px;align-items:flex-start}.itemicon{width:48px;height:48px;flex:none;border-radius:14px;background:#ccfbf1;display:grid;place-items:center;font-size:24px}.itemmain{flex:1;min-width:0}.item h3{font-size:16px;margin:1px 0 3px}.muted{color:#68737d;font-size:12px}.itembuttons{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}.smallbtn{border:1px solid #e1e9e9;background:#fff;border-radius:9px;padding:6px 9px;font-size:12px;color:#334155}.warn{color:#b45309}.empty{padding:24px 16px;text-align:center;border:1px dashed #b7cccc;border-radius:16px;background:#fff;color:#68737d}.empty strong{display:block;color:#17202a;font-size:16px;margin-bottom:5px}
+    nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e1e9e9;display:flex;justify-content:center;gap:30px;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:5}nav button{border:0;background:none;color:#64748b;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;padding:3px 12px}nav button b{font-size:20px;font-weight:500}nav button.active{color:#0f766e;font-weight:800}
+    dialog{border:0;border-radius:20px;width:calc(100% - 24px);max-width:520px;padding:0;box-shadow:0 20px 70px #0004}dialog::backdrop{background:#0f172a88}.modalhead{padding:18px 18px 0;display:flex;justify-content:space-between;align-items:center}.modalhead h2{margin:0;font-size:19px}.modalbody{padding:16px 18px 20px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.formrow{margin-bottom:11px}.formrow label{display:block;font-size:12px;font-weight:750;margin-bottom:5px;color:#475569}.full{grid-column:1/-1}.actions{display:flex;gap:8px;margin-top:15px}.actions button{flex:1}.close{border:0;background:#f1f5f9;border-radius:10px;padding:7px 10px}.note{font-size:12px;color:#64748b;background:#f8fafc;border-radius:10px;padding:10px;margin-top:12px}.warning{margin:12px 0;padding:10px 12px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;font-size:12px}
+    @media(min-width:600px){.items{grid-template-columns:1fr 1fr}.item{min-height:130px}}
+  </style>
+</head>
+<body>
+<header><div class="wrap brand"><div class="logo">🏷️</div><div><h1>LifeTag</h1><div class="tagline">Your belongings. One digital home.</div></div></div></header>
+<main>
+  <section id="homePage">
+    <div class="headrow"><h2>My inventory</h2><button class="primary" id="addBtn">＋ Add item</button></div>
+    <div class="warning">Prototype mode: data is stored only in this browser on this device. Login and cloud sync are not connected yet.</div>
+    <div class="stats"><div class="stat"><div class="num" id="totalCount">0</div><div class="label">Items tracked</div></div><div class="stat"><div class="num" id="warrantyCount">0</div><div class="label">Warranties expiring in 30 days</div></div></div>
+    <div class="toolbar"><input id="search" placeholder="Search your items…" aria-label="Search items" /><button class="secondary" id="exportBtn">Export</button></div>
+    <div class="filters" id="filters"></div><div class="items" id="items"></div>
+  </section>
+  <section id="remindersPage" hidden><div class="headrow"><h2>Warranty watch</h2></div><p class="muted">Items with a warranty ending in the next 30 days. This version does not send push notifications.</p><div class="items" id="reminderItems"></div></section>
+  <section id="aboutPage" hidden><div class="headrow"><h2>About LifeTag</h2></div><div class="stat"><h3>Keep the details that matter.</h3><p>Record belongings, purchase dates, warranty periods, receipt references and repair notes.</p><p><b>Version 1 prototype:</b> no real login, phone OTP, cloud sync, or remote backup yet.</p><p>Export backups regularly. Avoid storing sensitive document contents in this demo.</p><button class="secondary" id="importBtn">Import backup JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden /></div></section>
+</main>
+<nav><button class="active" data-page="home"><b>⌂</b><span>Items</span></button><button data-page="reminders"><b>◷</b><span>Warranty</span></button><button data-page="about"><b>ⓘ</b><span>About</span></button></nav>
+<dialog id="itemDialog"><div class="modalhead"><h2 id="formTitle">Add an item</h2><button class="close" id="closeModal">✕</button></div><div class="modalbody"><form id="itemForm"><input id="itemId" type="hidden" /><div class="formgrid">
+<div class="formrow full"><label for="name">Item name *</label><input id="name" required maxlength="90" placeholder="e.g. Samsung phone" /></div>
+<div class="formrow"><label for="category">Category</label><select id="category"><option>Electronics</option><option>Home</option><option>Accessories</option><option>Appliances</option><option>Furniture</option><option>Sports</option><option>Other</option></select></div>
+<div class="formrow"><label for="price">Purchase price (₹)</label><input id="price" type="number" min="0" step="1" placeholder="Optional" /></div>
+<div class="formrow"><label for="purchaseDate">Purchase date</label><input id="purchaseDate" type="date" /></div>
+<div class="formrow"><label for="warrantyMonths">Warranty (months)</label><input id="warrantyMonths" type="number" min="0" max="240" placeholder="e.g. 12" /></div>
+<div class="formrow full"><label for="receipt">Receipt / invoice reference</label><input id="receipt" maxlength="120" placeholder="Optional reference" /></div>
+<div class="formrow full"><label for="notes">Repair / maintenance notes</label><textarea id="notes" rows="3" maxlength="1000" placeholder="Service date, repair details, etc."></textarea></div>
+</div><div class="actions"><button type="button" class="secondary" id="cancelBtn">Cancel</button><button type="submit" class="primary">Save item</button></div></form><div class="note">Local-only storage. Cloud account sync is not connected.</div></div></dialog>
+<script>
+const KEY='lifetag-items-v1';let data=[];try{data=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){data=[]}
+let categoryFilter='All';const $=id=>document.getElementById(id);const cats=['All','Electronics','Home','Accessories','Appliances','Furniture','Sports','Other'];const icons={Electronics:'📱',Home:'🏠',Accessories:'🎧',Appliances:'🔌',Furniture:'🪑',Sports:'⚽',Other:'📦'};
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function dateStr(s){if(!s)return 'No purchase date';return new Date(s+'T00:00:00').toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}
+function endDate(x){if(!x.purchaseDate||!x.warrantyMonths||+x.warrantyMonths<=0)return null;let d=new Date(x.purchaseDate+'T00:00:00');d.setMonth(d.getMonth()+Number(x.warrantyMonths));return d}
+function daysLeft(x){let d=endDate(x);return d?Math.ceil((d-new Date(new Date().toDateString()))/86400000):null}
+function filtered(){let q=$('search').value.trim().toLowerCase();return data.filter(x=>(categoryFilter==='All'||x.category===categoryFilter)&&(`${x.name} ${x.category} ${x.notes||''} ${x.receipt||''}`).toLowerCase().includes(q)).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0))}
+function renderFilters(){$('filters').innerHTML=cats.map(c=>`<button class="filter ${c===categoryFilter?'active':''}" data-cat="${c}">${c}</button>`).join('');$('filters').querySelectorAll('button').forEach(b=>b.onclick=()=>{categoryFilter=b.dataset.cat;render()})}
+function card(x){let d=daysLeft(x),w=d===null?'No warranty date':d<0?'Warranty ended':d===0?'Warranty ends today':`Warranty ${d} days left`;return `<article class="item"><div class="itemicon">${icons[x.category]||'📦'}</div><div class="itemmain"><h3>${esc(x.name)}</h3><div class="muted">${esc(x.category)} · Purchased ${dateStr(x.purchaseDate)}</div><div style="font-size:13px;margin-top:7px">${x.price!==''&&x.price!=null?'₹'+Number(x.price).toLocaleString('en-IN')+' · ':''}<span class="${d!==null&&d>=0&&d<=30?'warn':''}">${w}</span></div>${x.notes?`<div class="muted" style="margin-top:5px">${esc(x.notes)}</div>`:''}<div class="itembuttons"><button class="smallbtn" data-edit="${x.id}">Edit</button><button class="smallbtn" data-delete="${x.id}">Delete</button></div></div></article>`}
+function bind(root){root.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>openForm(data.find(x=>x.id===b.dataset.edit)));root.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{let x=data.find(x=>x.id===b.dataset.delete);if(x&&confirm(`Delete "${x.name}" from this device?`)){data=data.filter(y=>y.id!==x.id);persist();render()}})}
+function render(){renderFilters();$('totalCount').textContent=data.length;$('warrantyCount').textContent=data.filter(x=>{let d=daysLeft(x);return d!==null&&d>=0&&d<=30}).length;let list=filtered();$('items').innerHTML=list.length?list.map(card).join(''):`<div class="empty" style="grid-column:1/-1"><strong>${data.length?'No matching items':'Your inventory starts here'}</strong>${data.length?'Try another search or category.':'Tap “Add item” to save your first belonging.'}</div>`;bind($('items'));let due=data.filter(x=>{let d=daysLeft(x);return d!==null&&d>=0&&d<=30}).sort((a,b)=>daysLeft(a)-daysLeft(b));$('reminderItems').innerHTML=due.length?due.map(card).join(''):'<div class="empty"><strong>No upcoming warranties</strong>Items ending within 30 days will appear here.</div>';bind($('reminderItems'))}
+function openForm(x=null){$('itemForm').reset();$('itemId').value=x?.id||'';$('formTitle').textContent=x?'Edit item':'Add an item';if(x){$('name').value=x.name;$('category').value=x.category;$('price').value=x.price??'';$('purchaseDate').value=x.purchaseDate||'';$('warrantyMonths').value=x.warrantyMonths??'';$('receipt').value=x.receipt||'';$('notes').value=x.notes||''}$('itemDialog').showModal()}
+$('addBtn').onclick=()=>openForm();$('closeModal').onclick=$('cancelBtn').onclick=()=>$('itemDialog').close();$('search').oninput=render;
+$('itemForm').onsubmit=e=>{e.preventDefault();let id=$('itemId').value||((crypto.randomUUID&&crypto.randomUUID())||String(Date.now()));let old=data.find(x=>x.id===id);let x={id,name:$('name').value.trim(),category:$('category').value,price:$('price').value,purchaseDate:$('purchaseDate').value,warrantyMonths:$('warrantyMonths').value,receipt:$('receipt').value.trim(),notes:$('notes').value.trim(),updatedAt:Date.now(),createdAt:old?.createdAt||Date.now()};if(old)data=data.map(y=>y.id===id?x:y);else data.push(x);persist();$('itemDialog').close();render()};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(n=>n.classList.toggle('active',n===b));['home','reminders','about'].forEach(p=>$(p+'Page').hidden=p!==b.dataset.page)});
+$('exportBtn').onclick=()=>{let blob=new Blob([JSON.stringify({app:'LifeTag',version:1,exportedAt:new Date().toISOString(),items:data},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='lifetag-backup.json';a.click();URL.revokeObjectURL(a.href)};
+$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let o=JSON.parse(await f.text()),rows=Array.isArray(o)?o:o.items;if(!Array.isArray(rows))throw Error();if(confirm('Import replaces current items. Continue?')){data=rows;persist();render();alert('Backup imported.')}}catch(err){alert('Invalid LifeTag backup file.')}e.target.value=''};
+render();
+</script>
+</body>
+</html>
