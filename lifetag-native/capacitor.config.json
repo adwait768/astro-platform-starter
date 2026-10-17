@@ -1,0 +1,8 @@
+{
+  "appId": "com.adwait768.lifetag",
+  "appName": "LifeTag",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
